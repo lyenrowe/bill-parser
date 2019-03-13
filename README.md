@@ -1,7 +1,7 @@
 # bill-parser
 parse alipay, wechat, unionpay bill file
 
-# usage
+## usage
 ```
 //$path bill file full path;
 $parser = FileParserFactory::create($path);
@@ -11,3 +11,13 @@ $rows = $parser->getData();
     $model->insertIgnore($piece);
 }*/
 ```
+## Installation
+Via [Composer](http://getcomposer.org/). To install, simply add it
+to your `composer.json` file:
+
+    "lyenrowe/bill-parser": "^1.0",
+
+Or run command:
+
+    composer require lyenrowe/bill-parser:1.*
+
