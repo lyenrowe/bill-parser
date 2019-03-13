@@ -1,0 +1,30 @@
+{
+    "name": "lyenrowe/bill-parser",
+    "description": "alipay,wechat and unionpay bill file parser",
+    "keywords": [
+        "wechat",
+        "alipay",
+        "unionpay",
+        "微信",
+        "支付宝",
+        "银联",
+        "对账单excel",
+        "对账单解析",
+        "excel大文件解析"
+    ],
+    "autoload": {
+        "psr-4": {
+            "Lyenrowe\\BillParser\\": "src/"
+        }
+    },
+    "require": {
+        "box/spout": "^2.7"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "lyen",
+            "email": "lyen_luo@qq.com"
+        }
+    ]
+}
