@@ -8,7 +8,7 @@ class Wechat extends FileParseAbstract
 {
     const CHANNEL_NAME = 'wechat';
 
-    public function parse($collection)
+    protected function parse($collection)
     {
         $head = $collection[3];
         $this->checkHead($head);

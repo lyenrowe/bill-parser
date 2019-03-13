@@ -1,12 +1,12 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: gs
+ * User: lyen
  * Date: 2019/3/13
  * Time: 11:11
  */
 
-namespace Lyenrowe\BillParser\Traits;
+namespace Lyenrowe\BillParser\FileParser\Traits;
 
 
 trait Stripe

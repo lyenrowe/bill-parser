@@ -14,7 +14,7 @@ Abstract Class FileParseAbstract
         $this->parse($collection);
     }
 
-    abstract public function parse($collection);
+    abstract protected function parse($collection);
 
     /**
      * @param $type
@@ -22,6 +22,11 @@ Abstract Class FileParseAbstract
      * @throws Exception
      */
     abstract protected function tradeType($type);
+
+    public function getData()
+    {
+        return $this->rows;
+    }
 
     protected function getSymbol($tradeType)
     {

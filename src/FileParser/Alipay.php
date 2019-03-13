@@ -8,7 +8,7 @@ class Alipay extends FileParseAbstract
 {
     const CHANNEL_NAME = 'alipay';
 
-    public function parse($collection)
+    protected function parse($collection)
     {
         $head = $collection[4];
         $this->checkHead($head);

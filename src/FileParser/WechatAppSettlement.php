@@ -3,15 +3,14 @@ namespace Lyenrowe\BillParser\FileParser;
 
 use Lyenrowe\BillParser\Exception;
 use Lyenrowe\BillParser\FileParseAbstract;
-use Lyenrowe\BillParser\Traits\Stripe;
 
 class WechatAppSettlement extends FileParseAbstract
 {
-    use Stripe;
+    use Traits\Stripe;
 
     const CHANNEL_NAME = 'wechat';
 
-    public function parse($collection)
+    protected function parse($collection)
     {
         $head = $collection[6];
         $this->checkHead($head);

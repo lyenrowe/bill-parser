@@ -8,7 +8,7 @@ class Unionpay extends FileParseAbstract
 {
     const CHANNEL_NAME = 'unionpay';
 
-    public function parse($collection)
+    protected function parse($collection)
     {
         $head = $collection[0];
         $this->checkHead($head);
