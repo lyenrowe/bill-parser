@@ -24,14 +24,15 @@ class Alipay extends FileParseAbstract
             //$originOrderNum = trim($row[1]);
             $tradeType = $this->tradeType(trim($row[2]));
             $orderNum = $tradeType == 2 ? trim($row[21]) : trim($row[1]);
+            $symbol = $this->getSymbol($tradeType);
 
             $this->rows[] = [
                 'order_num' => $orderNum,
                 'out_trade_no' => trim($row[0]), //原订单号
                 'trade_type' => $tradeType,
                 'product_name' => $row[3],
-                'amount' => $row[11],
-                'service_fee' => $row[22],
+                'amount' => $symbol * abs($row[11]),
+                'service_fee' => -$symbol * abs($row[22]),
                 'pay_channel' => self::CHANNEL_NAME,
                 'deal_time' => date('Y-m-d H:i:s', strtotime($row[4])),
                 'finish_time' => date('Y-m-d H:i:s', strtotime($row[5])),
@@ -48,7 +49,7 @@ class Alipay extends FileParseAbstract
         }
     }
 
-    private function tradeType($type)
+    protected function tradeType($type)
     {
         switch ($type) {
             case '交易':

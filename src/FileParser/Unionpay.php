@@ -30,13 +30,15 @@ class Unionpay extends FileParseAbstract
             if (self::TRADE_TYPE_REFUND == $tradeType) {
                 $outTradeNo = trim($row[13]);
             }
+            $symbol = $this->getSymbol($tradeType);
+
             $this->rows[] = [
                 'order_num' => $orderNum,
                 'out_trade_no' => $outTradeNo, //原订单号
                 'trade_type' => $tradeType,
                 'product_name' => null,
-                'amount' => $amount,
-                'service_fee' => -0.01 * $amount,
+                'amount' => $symbol * abs($amount),
+                'service_fee' => -0.01 * $symbol * abs($amount),
                 'pay_channel' => self::CHANNEL_NAME,
                 'deal_time' => $dealTime,
                 'finish_time' => $dealTime,
@@ -53,7 +55,7 @@ class Unionpay extends FileParseAbstract
         }
     }
 
-    private function tradeType($type)
+    protected function tradeType($type)
     {
         switch ($type) {
             case '消费':

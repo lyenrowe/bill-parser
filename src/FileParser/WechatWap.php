@@ -36,13 +36,15 @@ class WechatWap extends FileParseAbstract
                 //$outTradeNo = $row[14];
                 $amount = $row[16];
             }
+            $symbol = $this->getSymbol($tradeType);
+
             $this->rows[] = [
                 'order_num' => $orderNum,
                 'out_trade_no' => $outTradeNo, //原订单号
                 'trade_type' => $tradeType,
                 'product_name' => $row[20],
-                'amount' => $amount,
-                'service_fee' => -abs($row[22]), //-0.006 * $amount,
+                'amount' => $symbol * abs($amount),
+                'service_fee' => -$symbol * abs($row[22]), //-0.006 * $amount,
                 'pay_channel' => self::CHANNEL_NAME,
                 'deal_time' => $dealTime, //购和退单如果在同一天会只有一条记录！时间记录的是退单的时间
                 'finish_time' => $dealTime,
@@ -82,7 +84,7 @@ class WechatWap extends FileParseAbstract
         }
     }
 
-    private function tradeType($type)
+    protected function tradeType($type)
     {
         switch ($type) {
             case 'SUCCESS':

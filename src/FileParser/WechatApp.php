@@ -34,13 +34,15 @@ class WechatApp extends FileParseAbstract
                 $orderNum = $row[11];
                 //$outTradeNo = $row[10];
             }
+            $symbol = $this->getSymbol($tradeType);
+
             $this->rows[] = [
                 'order_num' => $orderNum,
                 'out_trade_no' => $outTradeNo,
                 'trade_type' => $tradeType,
                 'product_name' => $row[13],
-                'amount' => $amount,
-                'service_fee' => -0.006 * $amount,
+                'amount' => $symbol * abs($amount),
+                'service_fee' => -0.006 * $symbol * abs($amount),
                 'pay_channel' => self::CHANNEL_NAME,
                 'deal_time' => $dealTime,
                 'finish_time' => $dealTime,
@@ -57,7 +59,7 @@ class WechatApp extends FileParseAbstract
         }
     }
 
-    private function tradeType($type)
+    protected function tradeType($type)
     {
         switch ($type) {
             case '交易':

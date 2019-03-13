@@ -24,13 +24,15 @@ class Wechat extends FileParseAbstract
             }
             $dealTime = date('Y-m-d H:i:s', strtotime($row[0]));
             $tradeType = $this->tradeType(trim($row[9]));
+            $symbol = $this->getSymbol($tradeType);
+
             $this->rows[] = [
                 'order_num' => $orderNum,
                 'out_trade_no' => trim($row[1]),
                 'trade_type' => $tradeType,
                 'product_name' => null,
-                'amount' => $row[11],
-                'service_fee' => -0.006 * $row[11],
+                'amount' => $symbol * abs($row[11]),
+                'service_fee' => -0.006 * $symbol * abs($row[11]),
                 'pay_channel' => self::CHANNEL_NAME,
                 'deal_time' => $dealTime,
                 'finish_time' => date('Y-m-d H:i:s', strtotime($row[10])),
@@ -47,7 +49,7 @@ class Wechat extends FileParseAbstract
         }
     }
 
-    private function tradeType($type)
+    protected function tradeType($type)
     {
         switch ($type) {
             case '买家已支付':
