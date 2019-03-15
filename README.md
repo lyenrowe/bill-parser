@@ -1,5 +1,10 @@
 # bill-parser
-parse alipay, wechat, unionpay bill file
+parse alipay, wechat, unionpay bill file.
+
+解析支付平台账单文件，包括：支付宝，微信，银联等支付的账单文件。
+账单文件可通过接口下载，也可财务下载。
+使用非常简单，传递要解析的文件路径，
+程序根据文件头部内容分析文件类型，然后使用相应解析类解析账单文件
 
 ## usage
 ```
