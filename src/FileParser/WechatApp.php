@@ -29,7 +29,9 @@ class WechatApp extends FileParseAbstract
             $dealTime = $row[0]; //date('Y-m-d H:i:s', strtotime($row[0])); //购和退单独记录时间都是对的
             $tradeType = $this->tradeType($row[9]);
             $outTradeNo = $row[3];
+            $originOrderNum = '';
             if (self::TRADE_TYPE_REFUND == $tradeType) {
+                $originOrderNum = $orderNum;
                 $orderNum = $row[11];
                 //$outTradeNo = $row[10];
             }
@@ -37,6 +39,7 @@ class WechatApp extends FileParseAbstract
 
             $this->rows[] = [
                 'order_num' => $orderNum,
+                'origin_order_num' => $originOrderNum,
                 'out_trade_no' => $outTradeNo,
                 'trade_type' => $tradeType,
                 'product_name' => $row[13],

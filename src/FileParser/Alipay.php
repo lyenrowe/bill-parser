@@ -23,11 +23,17 @@ class Alipay extends FileParseAbstract
             }
             //$originOrderNum = trim($row[1]);
             $tradeType = $this->tradeType(trim($row[2]));
-            $orderNum = $tradeType == 2 ? trim($row[21]) : trim($row[1]);
             $symbol = $this->getSymbol($tradeType);
+            $orderNum = trim($row[1]);
+            $originOrderNum = '';
+            if (self::TRADE_TYPE_REFUND == $tradeType) {
+                $originOrderNum = $orderNum;
+                $orderNum = trim($row[21]);
+            }
 
             $this->rows[] = [
                 'order_num' => $orderNum,
+                'origin_order_num' => $originOrderNum,
                 'out_trade_no' => trim($row[0]), //原订单号
                 'trade_type' => $tradeType,
                 'product_name' => $row[3],

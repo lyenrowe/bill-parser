@@ -31,6 +31,7 @@ class Unionpay extends FileParseAbstract
                 $outTradeNo = trim($row[13]);
             }
             $symbol = $this->getSymbol($tradeType);
+            // 退订单无商户原订单交易流水号
 
             $this->rows[] = [
                 'order_num' => $orderNum,

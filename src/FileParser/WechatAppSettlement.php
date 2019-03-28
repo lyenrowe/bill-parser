@@ -29,7 +29,9 @@ class WechatAppSettlement extends FileParseAbstract
             $dealTime = $row[3];
             $tradeType = $this->tradeType($row[13]);
             $outTradeNo = $row[6];
+            $originOrderNum = '';
             if (self::TRADE_TYPE_REFUND == $tradeType) {
+                $originOrderNum = $orderNum;
                 $orderNum = $row[9];
                 //$outTradeNo = $row[8];
             }
@@ -37,6 +39,7 @@ class WechatAppSettlement extends FileParseAbstract
 
             $this->rows[] = [
                 'order_num' => $orderNum,
+                'origin_order_num' => $originOrderNum,
                 'out_trade_no' => $outTradeNo, //原订单号
                 'trade_type' => $tradeType,
                 'product_name' => '',
