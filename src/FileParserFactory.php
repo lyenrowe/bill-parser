@@ -3,6 +3,7 @@ namespace Lyenrowe\BillParser;
 
 use Lyenrowe\BillParser\FileParser\Alipay;
 use Lyenrowe\BillParser\FileParser\Unionpay;
+use Lyenrowe\BillParser\FileParser\UnionpayTxt;
 use Lyenrowe\BillParser\FileParser\Wechat;
 use Lyenrowe\BillParser\FileParser\WechatApp;
 use Lyenrowe\BillParser\FileParser\WechatAppSettlement;
@@ -22,6 +23,9 @@ class FileParserFactory
      */
     public static function create($fullPath)
     {
+        if ('.txt' == substr($fullPath, -4)) { //银联接口下载的账单和后台导出不一样
+            return new UnionpayTxt($fullPath);
+        }
         $data = [];
         //$fullPath = base_path($path);
         $content = file_get_contents($fullPath);
