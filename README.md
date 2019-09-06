@@ -33,4 +33,4 @@ To your `composer.json` file add:
 
 Or run command:
 
-    composer require lyenrowe/bill-parser
+    composer require lyenrowe/bill-parser:dev-master
