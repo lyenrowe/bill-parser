@@ -26,3 +26,11 @@ Or run command:
 
     composer require lyenrowe/bill-parser:1.*
 
+Via [Composer](http://getcomposer.org/). To install last
+to your `composer.json` file:
+
+    "lyenrowe/bill-parser": "dev-master"
+
+Or run command:
+
+    composer require lyenrowe/bill-parser
